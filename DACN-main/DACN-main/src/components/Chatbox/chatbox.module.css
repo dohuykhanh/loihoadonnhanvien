@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: montserrat, sans-serif;
+}
+
+.chat {
+    position: absolute;
+    left: 0px;
+    width: 250px;
+    align-items: center;
+    bottom: 0px;
+}
+
+.chatbox {
+    width: 306px;
+    height: 400px;
+    padding: 20px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    background-color: #e5e5e5;
+}
+
+.tinnhan {
+    width: 307px;
+}
+
+.messages {
+    background-color: #ddddf7;
+    padding: 10px;
+    height: calc(100% - 160px);
+    overflow: scroll;
+}
