@@ -8,7 +8,8 @@ function chat() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [TinhNhan, setTinNhan] = useState([]);
  // eslint-disable-next-line react-hooks/rules-of-hooks
-
+ const [Loadtinnhan, setLoadtinnhan] = useState(false);
+ // eslint-disable-next-line react-hooks/rules-of-hooks
   const Getvattu = async () => {
 
     const url = `http://localhost:5001/TinNhan`
@@ -39,7 +40,7 @@ function chat() {
                       const result = response.data;
                       const { status, message, data } = result;
                       if (status !== 'SUCCESS') {
-                          
+                        setLoadtinnhan(true);
                       }
                       else {
                          
@@ -54,31 +55,35 @@ function chat() {
  // eslint-disable-next-line react-hooks/rules-of-hooks
           useEffect(() => {
             Getvattu();
-        }, [])
+        }, [Loadtinnhan])
          // eslint-disable-next-line react-hooks/rules-of-hooks
 
 
   return (
     <div className={styles.chat}>
-        {/* <div className={styles.chatbox}>
-        <div className='form-group'>
-           
-        </div>
+        <div className={styles.chatbox}>
         
-        </div> */}
+       
         
-        <div className="messages">
+        <div className={styles.messages}>
                             {Data.map((item) =>
                                 <tr key={item._id}>
-                                  <div>Người nhắn là: {item.NguoiNhan}</div>
-                                    <div>{item.TinhNhan}</div>
+                                  <div className={styles.tingui} >
                                     
+                                    <h6 style={{position:"relative",top:"8px",display:"flex",justifyContent:"center"}}>{item.NguoiNhan}: {item.TinhNhan}</h6>
+                                    
+                                    
+                                    </div>
+                                   <h10></h10> 
+
+
+                              
                                     </tr>
                             )}
                             </div>
-                        
+                            </div>              
         <div className={styles.tinnhan}>
-          <form>
+          <form className={styles.fixformMess}>
         <input type="text" className='form-control'onChange={(e) => setTinNhan(e.target.value)}/>
         <button  onClick={handleSubmite}>🕊️</button>
         </form>
@@ -88,6 +93,7 @@ function chat() {
 
         {/* {kho && <Button size='sm' variant='primary' onClick={() => {handleclickgiohang(item); handleclickgiohangbd(item) }}>Chuyển</Button>}
          */}
+          
     </div>
   );
 }

@@ -29,7 +29,21 @@
 
 .messages {
     background-color: #ddddf7;
-    padding: 10px;
-    height: calc(100% - 160px);
+    margin: -19px;
+    height: calc(100% - -38px);
     overflow: scroll;
+    width: calc(100% - -43px);
+}
+.tingui{
+    color: black;
+    border-radius:   10px 10px  10px 10px;
+    background-color:#45b6fe;
+    height: 38px;
+    width: fit-content;
+    margin: 10px;
+    justify-content: center;
+}
+.fixformMess{
+    width: 307px;
+    
 }

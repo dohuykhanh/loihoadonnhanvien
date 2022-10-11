@@ -61,9 +61,9 @@ const handleChange = (item, d) => {
     <nav>
       <div className="nav_box">
         {Xep &&
-      <button className="fs" onClick={() => Hovernut()}>mở</button>}
-      {Xep &&<button className="fx" onClick={() => TatHovernut()}>tắt</button>}
-      <h1> CHAO MUNG DEN CHI NHANH: {Tenchinhanh} </h1>
+      <button style={{position:'relative',right:"120px"}} onClick={() => TatHovernut() }><i style={{color:"Azure"}} class="fa fa-arrow-circle-left"></i></button>}
+      {Xep &&<button style={{position:'relative',right:"160px"}} onClick={() => Hovernut() }><i style={{color:"Azure"}} class="fa fa-arrow-circle-right"></i></button>}
+      <h1 style={{color:"Azure"}} > <b><i>Chào Mừng Đến Chi Nhánh: {Tenchinhanh}</i></b> </h1>
       {Xep &&
       <section>
       {isToggledd && <DieuHuong/>}

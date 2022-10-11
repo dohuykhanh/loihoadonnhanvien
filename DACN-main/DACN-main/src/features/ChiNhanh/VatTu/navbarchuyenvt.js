@@ -30,6 +30,7 @@ const Navbarchuyenvt = () => {
   }
 
 
+
   const [Data, setData] = useState([]);
   const [Dataa, setDataa] = useState([]);
   const [show, setshow]=useState(true);
@@ -112,6 +113,12 @@ const Navbarchuyenvt = () => {
 var Tenchinhanh= localStorage.getItem("TenChiNhanh");
 console.log("chinhanh",Tenchinhanh);
 var ChiNhanh=Tenchinhanh;
+
+var blockboss = true;
+if(Tenchinhanh==0){
+  blockboss = false
+}
+
 const Hovernut = ()=>{
   setisToggledd(true);
 }
@@ -119,6 +126,10 @@ const TatHovernut = ()=>{
   setisToggledd(false);
 }
 
+var nhatt = true;
+if(Tenchinhanh==0){
+  nhatt= false;
+}
 
 
 const handleclickgiohang = (item ) => {
@@ -184,9 +195,9 @@ useEffect(() => {
     <div>
     <nav>
       <div className="nav_box">
-      {Xep &&<button className="fs" onClick={() => Hovernut()}>mở</button>}
-      {Xep &&<button className="fx" onClick={() => TatHovernut()}>tắt</button>}
-      <h1> CHAO MUNG DEN CHI NHANH: {Tenchinhanh} </h1>
+      {blockboss &&<button style={{position:'relative',right:"120px"}} onClick={() => TatHovernut() }><i style={{color:"Azure"}} class="fa fa-arrow-circle-left"></i></button>}
+      {blockboss &&<button style={{position:'relative',right:"160px"}} onClick={() =>Hovernut() }><i style={{color:"Azure"}} class="fa fa-arrow-circle-right"></i></button>}
+      {nhatt && <h1 style={{color:"Azure"}}> <b><i>Chào Mừng Đến Chi Nhánh: {Tenchinhanh}</i></b> </h1>}
       {Xep &&
       <section>
       {isToggledd && <DieuHuong/>}

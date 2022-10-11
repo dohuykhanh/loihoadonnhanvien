@@ -1,6 +1,6 @@
 .left {
     display: flex;
-    width: 100%;
+    
     position: absolute;
 }
 
@@ -16,14 +16,15 @@
 .leftButton {
     position: relative;
     background-color: gray;
-    width: 20%;
-    right: 0;
-    height: 89.3vh;
+    width: 100%;
+    left: -895px;
+    top:27px;
+    height: 81.3vh;
 }
 
 .nut {
     background-color: #f8584d;
-    width: 300px;
+    width: 280px;
     border: none;
     color: white;
     padding: 15px 32px;

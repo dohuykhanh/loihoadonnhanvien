@@ -28,7 +28,7 @@ button {
 form {
     width: fit-content;
     height: fit-content;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     position: relative;
     align-items: center;

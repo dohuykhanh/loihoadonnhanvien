@@ -1,36 +1,32 @@
-:root {
+
+:root{
     --mainColor: #29335c;
     --mainColorLight: #5767aa;
     --secondaryColor: #DB2B39;
-    --textColor: #eee;
-}
-
-.fs {
+    --textColor:#eee;
+  }
+.fs{
     color: var(--mainColorLight);
-    border-radius: 50%;
-    margin: 5px 5px;
+  border-radius: 50%;
+  margin: 5px 5px;
+ 
 }
-
-.fx {
+.fx{
     color: var(--mainColorLight);
-    border-radius: 50%;
-    margin: 5px 5px;
+  border-radius: 50%;
+  margin: 10px 5px;
+  
 }
-
-.OnOff {
+.OnOff{
     box-sizing: border-box;
     width: auto;
     background-color: var(--mainColorLight);
     display: flex;
     justify-content: flex-end;
-    align-content: flex-start;
+    align-content:flex-start ;
     flex-direction: row-reverse;
+   
 }
-
-.hd {
+.hd{
     padding-left: 296px;
-}
-.fixDieuHuong{
-    position: relative;
-    right: 211px;
 }

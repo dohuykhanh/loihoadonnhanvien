@@ -3,11 +3,14 @@ import { Button, Modal } from 'react-bootstrap'
 import axios from "axios";
 import styles from "./TungChiNhanh.module.css"
 import DieuHuong from "../../components/DieuHuong/Dieuhuong"
-
+import { useNavigate } from "react-router-dom";
 
 
 // import {isToggled} from'../../features/ChiNhanh/ChiNhanh'
 const TungChiNhanh = () => {
+
+
+    const navigate = useNavigate();
   const [isToggledd, setisToggledd] =useState(false);
   
 //   const [Chitiethoadon, setChitiethoadon]= useState([]);
@@ -17,7 +20,7 @@ const TungChiNhanh = () => {
 
   const [ViewShow, SetViewShow] = useState(false)
 
-
+ 
 
 
   const hanldeViewClose = () => { SetViewShow(false) }
@@ -214,24 +217,35 @@ var Manggop=[]
           hamgopmang();
 
 
-    const handleSubmite = () => {
+          const handleSubmite = () => {
             const url = 'http://localhost:5001/Nhanvien'
-            const Credentials = { hoten, sdt, ChiNhanh }
-            axios.post(url, Credentials)
-                .then(response => {
-                    const result = response.data;
-                    const { status, message, data } = result;
-                    if (status !== 'SUCCESS') {
-                        alert(message, status)
-                    }
-                    else {
-                        alert(message)
-                        window.location.reload()
-                    }
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            if(hoten=="" && sdt==""&& ChiNhanh==""){
+                alert("Vui lòng nhập đầy đủ thông tin");
+            }
+            else if(hoten=="" || sdt=="" || ChiNhanh==""){
+                alert("Vui lòng nhập đầy đủ thông tin");
+            }else{
+                
+                const Credentials = { hoten, sdt, ChiNhanh }
+                axios.post(url, Credentials)
+                    .then(response => {
+                        const result = response.data;
+                        const { status, message, data } = result;
+                        localStorage.setItem("Chutk",  result.data._id)
+                        if (status !== 'SUCCESS') {
+                            alert(message, status)
+                            
+                        }
+                        else {
+                            alert(message)
+                            window.location.reload()
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+                    navigate(`/DangKy`);
+            }
         }
 
         const handleEdit = () =>{
@@ -277,11 +291,10 @@ var Manggop=[]
         
         }
 
-
-
-        //handle Delete Function 
-    const handleDelete = () =>{
-        const url = `http://localhost:5001/Nhanvien/${id}`
+      //handle Delete Function 
+      const handleDeletetk = () =>{
+    
+        const url = `http://localhost:5001/TaiKhoan/${id}`
         axios.delete(url)
             .then(response => {
                 const result = response.data;
@@ -298,6 +311,35 @@ var Manggop=[]
                 console.log(err)
             })
     }
+
+       
+         //handle Delete Function 
+         const handleDelete = () =>{
+            const url = `http://localhost:5001/Nhanvien/${id}`
+            axios.delete(url)
+                .then(response => {
+                    const result = response.data;
+                    const { status, message } = result;
+                    handleDeletetk();
+                    if (status !== 'SUCCESS') {
+                        alert(message, status)
+                    }
+                    else {
+                        alert(message)
+                        window.location.reload()
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+
+
+
+
+
+
+
 
     // const handleMove = () =>{
     //     const url = `http://localhost:5001/Nhanvien/${id}`
@@ -356,20 +398,25 @@ var Manggop=[]
     setisToggledd(false);
   }
   
-
+  var Xep=true;
   return (
     <div>
       
-        <div className={styles.OnOff}>
-        <div className={styles.hd}>
-      <h1> Chào Mừng Đến Chi Nhánh {Tenchinhanh} </h1>
-      </div>
-      <button className={styles.fs} onClick={() => Hovernut()}>mở</button>
-      <button className={styles.fx} onClick={() => TatHovernut()}>tắt</button>
-      </div>
+      <nav>
+      <div className="nav_box">
+      
+      {Xep &&<button style={{position:'relative',right:"120px"}}  onClick={() => TatHovernut()}><i style={{color:"Azure"}} class="fa fa-arrow-circle-left"></i></button>}
+      {Xep &&<button style={{position:'relative',right:"240px"}}  onClick={() => Hovernut()}><i style={{color:"Azure"}} class="fa fa-arrow-circle-right"></i></button>}
+      <h1 style={{color:"Azure"}} > <b><i>Chào Mừng Đến Chi Nhánh: {Tenchinhanh}</i></b> </h1>
+      <div className={styles.fixDieuHuong}>
+      {Xep &&
       <section>
       {isToggledd && <DieuHuong/>}
-      </section>
+      </section>}
+      </div>
+      </div>
+     
+    </nav>
 
       <div>
             <div className='row'>
@@ -574,7 +621,7 @@ var Manggop=[]
                             <div className='form-group mt-3'>
                                 <input type="email" className='form-control' onChange={(e) => setsdt(e.target.value)} placeholder="Please enter phone number" />
                             </div>
-                            <Button type='submit' className='btn btn-success mt-4' onClick={handleSubmite}>Add Employee</Button>
+                            <Button type='submit' className='btn btn-success mt-4' onClick={handleSubmite}>Bước tiếp theo</Button>
                         </div>
                     </Modal.Body>
                     <Modal.Footer>

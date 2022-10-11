@@ -49,6 +49,9 @@ function DangNhap() {
       if(val.VaiTro==="NhanVien"){
         navigate(`/TungChiNhanh`);
       }
+      if(val.VaiTro==="QuanLy"){
+        navigate(`/TungChiNhanh`);
+      }
       localStorage.setItem("Vaitro", val.VaiTro);
       localStorage.setItem("TenChiNhanh", val.ChiNhanh);
       localStorage.setItem("NguoiNhanTin", val.Name);

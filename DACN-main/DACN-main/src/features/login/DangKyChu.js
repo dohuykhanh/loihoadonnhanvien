@@ -4,14 +4,8 @@ import images from '../../images/Final_logo.png'
 import axios from "axios";
 // import images from '../../images/background.jpg'
 import { useNavigate } from "react-router-dom";
-function DangKy() {
+function DangKyChu() {
   const navigate = useNavigate();
-  var Tenchinhanh= localStorage.getItem("TenChiNhanh");
-  console.log("chinhanh",Tenchinhanh)
-  var Chutk= localStorage.getItem("Chutk");
-  let Idchu=Chutk;
-
-  console.log("chu thang tak",Chutk)
   const [isToggledd, setisToggledd] =useState(false);
   const [Data, setData] = useState([]);
   const [RowData, SetRowData] = useState([])
@@ -32,33 +26,25 @@ function DangKy() {
   
      //Define here local state that store the form Data
      const [Password, setpassword] = useState("")
-    //  const [VaiTro, setvaitro] = useState("")
-    //  const [ChiNhanh, setchinhanh] = useState("")
+     const [VaiTro, setvaitro] = useState("")
+     const [ChiNhanh, setchinhanh] = useState("")
      const [Name, setName] = useState("")
-     var ChiNhanh=Tenchinhanh;
-     var VaiTro="NhanVien"
    
      
      const [cn, setcn] = useState("")
     //Id for update record and Delete
     const [id,setId] = useState("");
     const [Delete,setDelete] = useState(false)
-
-
-
   const handleSubmite = () => {
-    if(Password==""  && Name=="")
+    if(Password=="" && VaiTro=="" && Name=="")
     {
       alert("Vui long nhap thong tin")
-    }else if(Password==""|| Name==""){
+    }else if(Password=="" || VaiTro=="" || Name==""){
       alert("Vui long nhap thong tin")
     }else{
-  
-      console.log("khanh",VaiTro)
-      console.log("khanh",ChiNhanh)
       const url = 'http://localhost:5001/TaiKhoan'
     
-      const Credentials = { Password,VaiTro,Name,ChiNhanh,Idchu }
+      const Credentials = { Password,VaiTro,Name,ChiNhanh }
       axios.post(url, Credentials)
           .then(response => {
               const result = response.data;
@@ -74,7 +60,7 @@ function DangKy() {
           .catch(err => {
               console.log(err)
           })
-          navigate(`/TungChiNhanh`);
+          navigate(`/NhanVien`);
     }
     
 }
@@ -96,9 +82,20 @@ function DangKy() {
           </div>
      
           
-        
+          <div className={styles.formGroup}>
+            <label htmlFor="name">Chi nhánh</label>
+            <input type="number" name="name" id="name" onChange={(e) => setchinhanh(e.target.value)} />
+          </div>
 
-           
+          <div className={styles.formGroup}>
+          <label htmlFor="name">Chức Vụ</label>
+                <select id="input-group" onChange={(e) => setvaitro(e.target.value)}>
+                <option value=""> -- </option>
+                
+                  <option value="QuanLy">QuanLy</option>
+
+                </select>
+           </div>     
           <input onClick={handleSubmite} type="submit" value="Tạo Tài Khoản" />
         </div>
 
@@ -108,10 +105,8 @@ function DangKy() {
         </div>
       </form>
 
-
-
     </div>
   );
 }
 
-export default DangKy;
+export default DangKyChu;

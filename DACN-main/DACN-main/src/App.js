@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DangNhap from './features/login/DangNhap';
 import DangKy from './features/login/Dangky';
-
+import DangKyChu from './features/login/DangKyChu';
 // import Navbar from './components/Navbar/header'
 import ChiNhanh from './features/ChiNhanh/ChiNhanh'
 import Kho from './features/Kho/Kho'
@@ -69,6 +69,15 @@ function App() {
              </Home>
            }>
            </Route>
+
+           <Route path='/DangKyChu' element={
+           
+           <DangKyChu/>
+           
+         }>
+         </Route> 
+
+
            <Route path='/BanHang' element={
              <Home>
              <BanHang/>
